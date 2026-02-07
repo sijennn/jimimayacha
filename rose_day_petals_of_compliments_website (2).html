@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&display=swap" rel="stylesheet" />
+  <title>Jimi Mayacha — A Rose Just For You</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Cormorant Garamond', serif;
+      background: #000;
+    }
+
+    /* ===== CINEMATIC 3-PANEL BACKGROUND ===== */
+    .background {
+      position: fixed;
+      inset: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 6s ease-in-out;
+    }
+
+    .background.visible {
+      opacity: 1;
+    }
+
+    .bg {
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.45) blur(1px);
+    }
+
+    .bg1 { background-image: url('bg1.jpg'); }
+    .bg2 { background-image: url('bg2.jpg'); }
+    .bg3 { background-image: url('bg3.jpg'); }
+
+    .vignette {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle, transparent 40%, rgba(0,0,0,0.75));
+      z-index: 1;
+    }
+
+    /* ===== CENTER STAGE ===== */
+    .scene {
+      position: relative;
+      z-index: 2;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    svg {
+      width: 420px;
+      max-width: 90vw;
+      filter: drop-shadow(0 30px 60px rgba(255, 0, 60, 0.45));
+    }
+
+    /* ===== PETALS ===== */
+    .petal {
+      opacity: 0;
+      transform-origin: center;
+      animation: bloom 4.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    }
+
+    .p1 { animation-delay: 0.5s; }
+    .p2 { animation-delay: 1.3s; }
+    .p3 { animation-delay: 2.1s; }
+    .p4 { animation-delay: 2.9s; }
+    .p5 { animation-delay: 3.7s; }
+    .p6 { animation-delay: 4.5s; }
+    .p7 { animation-delay: 5.3s; }
+    .p8 { animation-delay: 6.1s; }
+
+    @keyframes bloom {
+      from {
+        opacity: 0;
+        transform: scale(0.55) rotate(-12deg);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+      }
+    }
+
+    /* ===== COMPLIMENTS ===== */
+    .compliment {
+      position: absolute;
+      font-size: 13px;
+      color: #ffe6ec;
+      text-shadow: 0 3px 12px rgba(0,0,0,0.8);
+      opacity: 0;
+      animation: fadeText 2s ease forwards;
+    }
+
+    .c1 { top: 38%; left: 50%; transform: translate(-50%, -50%); animation-delay: 1.5s; }
+    .c2 { top: 32%; left: 60%; animation-delay: 2.3s; }
+    .c3 { top: 42%; left: 65%; animation-delay: 3.1s; }
+    .c4 { top: 52%; left: 60%; animation-delay: 3.9s; }
+    .c5 { top: 58%; left: 50%; animation-delay: 4.7s; }
+    .c6 { top: 52%; left: 40%; animation-delay: 5.5s; }
+    .c7 { top: 42%; left: 35%; animation-delay: 6.3s; }
+    .c8 { top: 32%; left: 40%; animation-delay: 7.1s; }
+
+    @keyframes fadeText {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== UI ===== */
+    audio {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      opacity: 0.6;
+      z-index: 3;
+    }
+
+    .title {
+      position: fixed;
+      top: 26px;
+      width: 100%;
+      text-align: center;
+      letter-spacing: 6px;
+      font-size: 13px;
+      color: #ffd6df;
+      opacity: 0.85;
+      z-index: 3;
+    }
+
+    .name {
+      position: fixed;
+      top: 64px;
+      width: 100%;
+      text-align: center;
+      font-family: 'Great Vibes', cursive;
+      font-size: 56px;
+      color: #fff;
+      opacity: 0;
+      z-index: 3;
+      animation: nameReveal 5s ease forwards 3.5s;
+    }
+
+    @keyframes nameReveal {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background -->
+  <div class="background">
+    <div class="bg bg1"></div>
+    <div class="bg bg2"></div>
+    <div class="bg bg3"></div>
+  </div>
+  <div class="vignette"></div>
+
+  <div class="title">A ROSE FOR</div>
+<div class="name">Jimi Mayacha</div>
+
+  <audio controls autoplay loop>
+    <source src="music.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- Scene -->
+  <div class="scene">
+
+    <svg viewBox="0 0 400 500">
+      <!-- Outer petals -->
+      <path class="petal p1" d="M200 70 C280 40 360 90 340 180 C320 270 240 280 200 240 C160 280 80 270 60 180 C40 90 120 40 200 70" fill="#d62839" />
+      <path class="petal p2" d="M200 100 C290 90 310 150 280 230 C260 300 220 300 200 260" fill="#e63946" />
+      <path class="petal p3" d="M200 100 C110 90 90 150 120 230 C140 300 180 300 200 260" fill="#e63946" />
+
+      <!-- Middle petals -->
+      <path class="petal p4" d="M200 140 C255 135 265 190 240 240 C220 290 200 280 200 255" fill="#ef476f" />
+      <path class="petal p5" d="M200 140 C145 135 135 190 160 240 C180 290 200 280 200 255" fill="#ef476f" />
+
+      <!-- Inner petals -->
+      <path class="petal p6" d="M200 175 C230 170 235 200 220 225 C210 245 200 240 200 230" fill="#ff758f" />
+      <path class="petal p7" d="M200 175 C170 170 165 200 180 225 C190 245 200 240 200 230" fill="#ff758f" />
+
+      <!-- Core -->
+      <circle class="petal p8" cx="200" cy="205" r="22" fill="#ffd6e0" />
+
+      <!-- Stem -->
+      <rect x="196" y="270" width="8" height="180" rx="4" fill="#1b4332" />
+    </svg>
+
+    <!-- Compliments -->
+    <div class="compliment c1">You are everything that I prayed for</div>
+    <div class="compliment c2">Your smile ughh makes my day</div>
+    <div class="compliment c3">You are my home</div>
+    <div class="compliment c4">You are effortlessly beautiful</div>
+    <div class="compliment c5">With you, everything feels right</div>
+    <div class="compliment c6">You make everything so beautiful</div>
+    <div class="compliment c7">You are my favorite feeling</div>
+    <div class="compliment c8">I choose you, always!</div>
+
+  </div>
+
+<script>
+  setTimeout(() => {
+    document.querySelector('.background').classList.add('visible');
+  }, 9500);
+</script>
+
+</body>
+</html>
